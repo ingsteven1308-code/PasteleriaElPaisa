@@ -88,7 +88,7 @@ export default function Gallery() {
             className="btn-whatsapp inline-flex items-center gap-2"
           >
             <MessageSquare size={18} />
-            Ver más trabajos en WhatsApp
+            Solicita tu diseño aquí
           </a>
         </div>
       </div>

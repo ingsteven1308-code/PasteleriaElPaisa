@@ -2,6 +2,7 @@ import React from 'react';
 import { Tag, Clock, ShoppingCart } from 'lucide-react';
 import { promotions, products } from '../data/products';
 import { useCart } from '../context/CartContext';
+import { formatCurrency } from '../utils/currency';
 
 export default function Promotions({ onProductClick }) {
   const { addItem } = useCart();
@@ -50,11 +51,11 @@ export default function Promotions({ onProductClick }) {
                     <div className="flex items-baseline gap-3 mb-6">
                       {product.originalPrice && (
                         <span className="text-white/60 line-through text-sm">
-                          ${product.originalPrice.toLocaleString()}
+                          {formatCurrency(product.originalPrice)}
                         </span>
                       )}
                       <span className="text-3xl font-black">
-                        ${product.price.toLocaleString()}
+                        {formatCurrency(product.price)}
                       </span>
                     </div>
                   )}

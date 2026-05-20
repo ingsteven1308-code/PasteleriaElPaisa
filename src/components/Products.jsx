@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ShoppingCart, Star, Eye } from 'lucide-react';
 import { products, categories } from '../data/products';
 import { useCart } from '../context/CartContext';
+import { formatCurrency } from '../utils/currency';
 
 function ProductCard({ product, onDetail, onAdd }) {
   const colors = [
@@ -48,7 +49,6 @@ function ProductCard({ product, onDetail, onAdd }) {
               className={i < Math.floor(product.rating) ? 'text-yellow-400 fill-yellow-400' : 'text-gray-200 fill-gray-200'}
             />
           ))}
-          <span className="text-xs text-gray-500 ml-1">({product.reviews})</span>
         </div>
 
         <h3 className="font-bold text-gray-800 text-lg mb-1 font-serif">{product.name}</h3>
@@ -57,9 +57,9 @@ function ProductCard({ product, onDetail, onAdd }) {
         <div className="flex items-center justify-between mt-auto">
           <div>
             {product.originalPrice && (
-              <div className="text-gray-400 line-through text-sm">${product.originalPrice.toLocaleString()}</div>
+              <div className="text-gray-400 line-through text-sm">{formatCurrency(product.originalPrice)}</div>
             )}
-            <div className="text-2xl font-black text-primary-600">${product.price.toLocaleString()}</div>
+            <div className="text-2xl font-black text-primary-600">{formatCurrency(product.price)}</div>
           </div>
           <div className="flex gap-2">
             <button

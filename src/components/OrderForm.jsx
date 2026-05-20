@@ -2,12 +2,26 @@ import React, { useState } from 'react';
 import { X, User, Phone, MapPin, Calendar, Clock, MessageSquare, Truck, Store, Send } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { WHATSAPP_NUMBER } from '../data/products';
+import { formatCurrency } from '../utils/currency';
 
 const INITIAL = {
   name: '', phone: '', address: '', city: '',
   deliveryDate: '', deliveryTime: '', eventReason: '', notes: '',
   deliveryType: 'domicilio',
 };
+
+const Field = React.memo(function Field({ label, icon: Icon, error, children }) {
+  return (
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-1.5 flex items-center gap-1.5">
+        <Icon size={14} className="text-primary-500" />
+        {label}
+      </label>
+      {children}
+      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+    </div>
+  );
+});
 
 export default function OrderForm({ isOpen, onClose }) {
   const { items, total, clearCart } = useCart();
@@ -35,7 +49,7 @@ export default function OrderForm({ isOpen, onClose }) {
     if (!validate()) return;
 
     const productList = items
-      .map(i => `  • ${i.name} (${i.size}) x${i.qty} = $${(i.price * i.qty).toLocaleString()}${i.options?.length ? `\n    Opciones: ${i.options.join(', ')}` : ''}`)
+      .map(i => `  • ${i.name} (${i.size}) x${i.qty} = ${formatCurrency(i.price * i.qty)}${i.options?.length ? `\n    Opciones: ${i.options.join(', ')}` : ''}`)
       .join('\n');
 
     const msg = `🎂 *NUEVO PEDIDO - Dulce Tentación*\n\n` +
@@ -44,7 +58,7 @@ export default function OrderForm({ isOpen, onClose }) {
       `  Teléfono: ${form.phone}\n` +
       `  Ciudad: ${form.city || 'No especificada'}\n\n` +
       `🛒 *Productos*\n${productList}\n\n` +
-      `💰 *Total: $${total.toLocaleString()}*\n\n` +
+      `💰 *Total: ${formatCurrency(total)}*\n\n` +
       `🚚 *Entrega*\n` +
       `  Tipo: ${form.deliveryType === 'domicilio' ? '🏠 Domicilio' : '🏪 Recoger en tienda'}\n` +
       (form.deliveryType === 'domicilio' ? `  Dirección: ${form.address}\n` : '') +
@@ -61,17 +75,6 @@ export default function OrderForm({ isOpen, onClose }) {
   };
 
   if (!isOpen) return null;
-
-  const Field = ({ label, icon: Icon, error, children }) => (
-    <div>
-      <label className="block text-sm font-medium text-gray-700 mb-1.5 flex items-center gap-1.5">
-        <Icon size={14} className="text-primary-500" />
-        {label}
-      </label>
-      {children}
-      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
-    </div>
-  );
 
   const inputClass = (field) =>
     `w-full border ${errors[field] ? 'border-red-400' : 'border-gray-200'} rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent transition-all`;
@@ -97,12 +100,12 @@ export default function OrderForm({ isOpen, onClose }) {
             {items.map(item => (
               <div key={item.cartKey} className="flex justify-between text-sm">
                 <span>{item.name} x{item.qty}</span>
-                <span className="font-semibold">${(item.price * item.qty).toLocaleString()}</span>
+                <span className="font-semibold">{formatCurrency(item.price * item.qty)}</span>
               </div>
             ))}
             <div className="border-t border-white/20 mt-2 pt-2 flex justify-between font-bold">
               <span>Total</span>
-              <span>${total.toLocaleString()}</span>
+              <span>{formatCurrency(total)}</span>
             </div>
           </div>
         </div>

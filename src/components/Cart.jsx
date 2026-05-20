@@ -1,6 +1,7 @@
 import React from 'react';
 import { X, Minus, Plus, Trash2, ShoppingBag, MessageSquare } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { formatCurrency } from '../utils/currency';
 
 export default function Cart({ isOpen, onClose, onCheckout }) {
   const { items, total, updateQty, removeItem } = useCart();
@@ -77,7 +78,7 @@ export default function Cart({ isOpen, onClose, onCheckout }) {
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="font-bold text-primary-600 text-sm">
-                        ${(item.price * item.qty).toLocaleString()}
+                        {formatCurrency(item.price * item.qty)}
                       </span>
                       <button
                         onClick={() => removeItem(item.cartKey)}
@@ -99,7 +100,7 @@ export default function Cart({ isOpen, onClose, onCheckout }) {
             <div className="space-y-2">
               <div className="flex justify-between text-sm text-gray-500">
                 <span>Subtotal</span>
-                <span>${total.toLocaleString()}</span>
+                <span>{formatCurrency(total)}</span>
               </div>
               <div className="flex justify-between text-sm text-gray-500">
                 <span>Domicilio</span>
@@ -107,7 +108,7 @@ export default function Cart({ isOpen, onClose, onCheckout }) {
               </div>
               <div className="flex justify-between font-bold text-gray-800 text-lg pt-2 border-t border-gray-100">
                 <span>Total</span>
-                <span className="text-primary-600">${total.toLocaleString()}</span>
+                <span className="text-primary-600">{formatCurrency(total)}</span>
               </div>
             </div>
             <button

@@ -32,7 +32,7 @@ export default function About() {
 
             {/* Floating card */}
             <div className="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-4 max-w-48">
-              <div className="text-4xl font-black text-primary-600">10+</div>
+              <div className="text-4xl font-black text-primary-600">3</div>
               <div className="text-sm text-gray-600 font-medium">Años endulzando momentos especiales</div>
             </div>
           </div>
@@ -45,10 +45,10 @@ export default function About() {
             <h2 className="text-4xl font-bold font-serif text-gray-800 mb-6 leading-tight">
               Creando momentos{' '}
               <span className="text-primary-600 italic">dulces e inolvidables</span>{' '}
-              desde 2014
+              desde 2023
             </h2>
             <p className="text-gray-600 leading-relaxed mb-6">
-              Dulce Tentación nació del sueño de una familia apasionada por la repostería artesanal. Lo que comenzó como un pequeño emprendimiento familiar se ha convertido en la pastelería de referencia en la ciudad, reconocida por la calidad, creatividad y el amor que ponemos en cada creación.
+              Pastelería El Paisa nació del sueño de una familia apasionada por la repostería artesanal. Lo que comenzó como un pequeño emprendimiento familiar se ha convertido en la pastelería de referencia en la ciudad, reconocida por la calidad, creatividad y el amor que ponemos en cada creación.
             </p>
             <p className="text-gray-600 leading-relaxed mb-8">
               Cada torta que sale de nuestra cocina lleva consigo años de experiencia, ingredientes seleccionados y, sobre todo, el deseo de hacer que cada celebración sea perfecta e inolvidable.

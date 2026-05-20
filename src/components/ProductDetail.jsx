@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, ShoppingCart, Star, Check, ChevronLeft, ChevronRight, Minus, Plus } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { formatCurrency } from '../utils/currency';
 
 export default function ProductDetail({ product, onClose }) {
   const { addItem } = useCart();
@@ -83,7 +84,6 @@ export default function ProductDetail({ product, onClose }) {
               {[...Array(5)].map((_, i) => (
                 <Star key={i} size={14} className={i < Math.floor(product.rating) ? 'text-yellow-400 fill-yellow-400' : 'text-gray-200 fill-gray-200'} />
               ))}
-              <span className="text-sm text-gray-500">({product.reviews} reseñas)</span>
             </div>
 
             <h2 className="text-2xl font-bold font-serif text-gray-800 mb-2">{product.name}</h2>
@@ -91,9 +91,9 @@ export default function ProductDetail({ product, onClose }) {
 
             <div className="flex items-baseline gap-3 mb-5">
               {product.originalPrice && (
-                <span className="text-gray-400 line-through">${product.originalPrice.toLocaleString()}</span>
+                <span className="text-gray-400 line-through">{formatCurrency(product.originalPrice)}</span>
               )}
-              <span className="text-3xl font-black text-primary-600">${product.price.toLocaleString()}</span>
+              <span className="text-3xl font-black text-primary-600">{formatCurrency(product.price)}</span>
               {product.originalPrice && (
                 <span className="badge">
                   -{Math.round((1 - product.price / product.originalPrice) * 100)}%

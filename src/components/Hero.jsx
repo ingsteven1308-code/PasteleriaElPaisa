@@ -28,12 +28,7 @@ const slides = [
   },
 ];
 
-const stats = [
-  { icon: Star, value: '5,000+', label: 'Clientes felices' },
-  { icon: Award, value: '10 años', label: 'De experiencia' },
-  { icon: Clock, value: '24h', label: 'Pedidos rápidos' },
-  { icon: Truck, value: 'Domicilio', label: 'En toda la ciudad' },
-];
+
 
 export default function Hero({ onProductsClick, onOrderClick }) {
   const [current, setCurrent] = useState(0);
@@ -98,41 +93,9 @@ export default function Hero({ onProductsClick, onOrderClick }) {
                 {/* Main card */}
                 <div className="w-80 h-80 img-placeholder rounded-3xl shadow-2xl flex items-center justify-center">
                   <span className="text-8xl animate-bounce-soft">{slide.emoji}</span>
-                </div>
-                {/* Floating badge top */}
-                <div className="absolute -top-4 -left-4 bg-white rounded-2xl shadow-lg p-3 flex items-center gap-2">
-                  <div className="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center text-sm">⭐</div>
-                  <div>
-                    <div className="text-xs text-gray-500">Calificación</div>
-                    <div className="text-sm font-bold text-gray-800">4.9 / 5.0</div>
-                  </div>
-                </div>
-                {/* Floating badge bottom */}
-                <div className="absolute -bottom-4 -right-4 bg-primary-600 text-white rounded-2xl shadow-lg p-3">
-                  <div className="text-xs opacity-80">Pedidos hoy</div>
-                  <div className="text-lg font-bold">+47 🎂</div>
-                </div>
+                </div>           
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Stats bar */}
-      <div className="bg-white border-t border-gray-100 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {stats.map(({ icon: Icon, value, label }) => (
-              <div key={label} className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-primary-50 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Icon size={20} className="text-primary-600" />
-                </div>
-                <div>
-                  <div className="font-bold text-gray-800">{value}</div>
-                  <div className="text-sm text-gray-500">{label}</div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </div>
