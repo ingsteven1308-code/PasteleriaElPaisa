@@ -62,12 +62,12 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-sm leading-relaxed mb-5">
-              Endulzando momentos especiales desde 2014. Tortas artesanales, cupcakes y postres elaborados con amor y los mejores ingredientes.
+              Endulzando momentos especiales desde 2023. Tortas artesanales, cupcakes y postres elaborados con amor y los mejores ingredientes.
             </p>
             <div className="flex gap-3">
               {[
-                { icon: Instagram, href: '#', label: 'Instagram' },
-                { icon: Facebook, href: '#', label: 'Facebook' },
+                { icon: Instagram, href: 'https://www.instagram.com/tiventrujillo?igsh=MTU2bDhkaDYwb2Y3OQ%3D%3D&utm_source=qr', label: 'Instagram' },
+                { icon: Facebook, href: 'https://www.facebook.com/share/18gMiAJNH3/?mibextid=wwXIfr', label: 'Facebook' },
               ].map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
@@ -108,8 +108,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 { icon: Phone, text: '+57 300 123 4567', href: `https://wa.me/${WHATSAPP_NUMBER}` },
-                { icon: Mail, text: 'pedidos@dulcetentacion.com', href: 'mailto:pedidos@dulcetentacion.com' },
-                { icon: MapPin, text: 'Cra. 15 #45-22, Centro, Tu Ciudad', href: '#' },
+                { icon: MapPin, text: 'Calle 24 Norte #5-07, Armenia, Quindío', href: 'https://maps.google.com' },
               ].map(({ icon: Icon, text, href }) => (
                 <li key={text}>
                   <a href={href} target="_blank" rel="noopener noreferrer" className="flex gap-2 text-sm hover:text-primary-400 transition-colors">
@@ -143,11 +142,21 @@ export default function Footer() {
 
       {/* Bottom */}
       <div className="border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
           <span>© 2026 Pastelería El Paisa Pastelería. Todos los derechos reservados.</span>
-          <span className="flex items-center gap-1">
-            Hecho con <Heart size={12} className="text-primary-500 fill-primary-500" /> para endulzar tu vida
-          </span>
+          <div className="flex flex-col sm:flex-row items-center gap-3">
+            <a
+              href="/document/Politica_Tratamiento_Datos_Pasteleria_El_Paisa.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors underline-offset-4 hover:underline"
+            >
+              Política de Tratamiento de Datos
+            </a>
+            <span className="flex items-center gap-1 text-gray-400">
+              Hecho con <Heart size={12} className="text-primary-500 fill-primary-500" /> para endulzar tu vida
+            </span>
+          </div>
         </div>
       </div>
     </footer>

@@ -48,16 +48,8 @@ export default function Contact() {
                 iconColor: 'text-green-600 bg-green-100',
               },
               {
-                icon: Mail, title: 'Correo electrónico',
-                content: 'pedidos@dulcetentacion.com',
-                action: () => window.open('mailto:pedidos@dulcetentacion.com', '_blank'),
-                label: 'Enviar correo',
-                color: 'bg-blue-50 border-blue-200',
-                iconColor: 'text-blue-600 bg-blue-100',
-              },
-              {
                 icon: MapPin, title: 'Dirección',
-                content: 'Cra. 15 #45-22, Barrio Centro, Tu Ciudad',
+                content: 'Calle 24 Norte #5-07, Armenia, Quindío',
                 action: () => window.open('https://maps.google.com', '_blank'),
                 label: 'Ver en mapa',
                 color: 'bg-primary-50 border-primary-200',
@@ -118,18 +110,15 @@ export default function Contact() {
           {/* Form + Map */}
           <div className="space-y-6">
             {/* Map placeholder */}
-            <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl h-52 flex flex-col items-center justify-center border border-gray-200 overflow-hidden relative">
-              <span className="text-5xl mb-2">📍</span>
-              <p className="text-gray-600 font-medium text-sm">Cra. 15 #45-22, Centro</p>
-              <p className="text-gray-400 text-xs">Tu Ciudad, Colombia</p>
-              <a
-                href="https://maps.google.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-3 text-primary-600 text-xs font-semibold hover:underline"
-              >
-                Abrir en Google Maps →
-              </a>
+            <div className="rounded-2xl h-52 border border-gray-200 overflow-hidden relative">
+              <iframe
+                title="Ubicación de la pastelería"
+                src="https://www.google.com/maps?q=Calle+24+Norte+%235-07,+Armenia,+Quind%C3%ADo&output=embed"
+                className="absolute inset-0 w-full h-full"
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
 
             {/* Contact form */}
