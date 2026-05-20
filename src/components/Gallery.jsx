@@ -23,7 +23,22 @@ const gradients = [
 
 const emojis = ['🎂', '🌹', '🧁', '💍', '🎉', '🍰', '🌸', '🎊', '💐', '✨', '🎁', '🍓'];
 
-const heights = ['h-48', 'h-64', 'h-56', 'h-72', 'h-48', 'h-60', 'h-52', 'h-64', 'h-48', 'h-56', 'h-60', 'h-72'];
+// Increased heights to make gallery items more prominent and similar to product cards
+// Each entry uses responsive height classes: mobile (base), md (tablet), lg (desktop)
+const heights = [
+  'h-64 md:h-72 lg:h-80',
+  'h-64 md:h-72 lg:h-80',
+  'h-56 md:h-64 lg:h-72',
+  'h-72 md:h-80 lg:h-96',
+  'h-64 md:h-72 lg:h-80',
+  'h-64 md:h-72 lg:h-80',
+  'h-56 md:h-64 lg:h-72',
+  'h-64 md:h-72 lg:h-80',
+  'h-56 md:h-64 lg:h-72',
+  'h-64 md:h-72 lg:h-80',
+  'h-64 md:h-72 lg:h-80',
+  'h-72 md:h-80 lg:h-96',
+];
 
 export default function Gallery() {
   const [active, setActive] = useState('all');
@@ -44,9 +59,9 @@ export default function Gallery() {
 
   const renderGalleryItem = (img, idx) => (
     <div
-      className={`rounded-2xl overflow-hidden bg-gradient-to-br ${gradients[idx % gradients.length]} ${heights[idx % heights.length]} flex flex-col items-center justify-center relative group cursor-pointer hover:shadow-xl transition-shadow h-full`}
+      className={`rounded-2xl overflow-hidden bg-gradient-to-br ${gradients[idx % gradients.length]} ${heights[idx % heights.length]} flex flex-col items-center justify-center relative group cursor-pointer hover:shadow-xl transition-shadow`}
     >
-      <span className="text-5xl group-hover:scale-110 transition-transform duration-300">
+      <span className="text-6xl md:text-7xl lg:text-8xl group-hover:scale-110 transition-transform duration-300">
         {emojis[idx % emojis.length]}
       </span>
       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-end">
