@@ -3,6 +3,7 @@ import { ShoppingCart, Star, Eye } from 'lucide-react';
 import { products, categories } from '../data/products';
 import { useCart } from '../context/CartContext';
 import { formatCurrency } from '../utils/currency';
+import ResponsiveCarousel from './ResponsiveCarousel';
 
 function ProductCard({ product, onDetail, onAdd }) {
   const colors = [
@@ -14,9 +15,9 @@ function ProductCard({ product, onDetail, onAdd }) {
   const color = colors[product.id % colors.length];
 
   return (
-    <div className="card group animate-fade-in flex flex-col">
+    <div className="card group flex flex-col h-full">
       {/* Image */}
-      <div className={`relative h-52 bg-gradient-to-br ${color} flex items-center justify-center overflow-hidden`}>
+      <div className={`relative h-52 bg-gradient-to-br ${color} flex items-center justify-center overflow-hidden rounded-t-lg`}>
         <span className="text-6xl group-hover:scale-110 transition-transform duration-300">🎂</span>
         {product.originalPrice && (
           <div className="absolute top-3 left-3 badge">
@@ -95,6 +96,14 @@ export default function Products({ onProductDetail }) {
     addItem({ id: product.id, name: product.name, price: product.price, qty: 1, size: product.sizes[0], image: product.image });
   };
 
+  const renderProductCard = (product) => (
+    <ProductCard
+      product={product}
+      onDetail={onProductDetail}
+      onAdd={handleAdd}
+    />
+  );
+
   return (
     <section id="productos" className="py-20 bg-cream">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -123,19 +132,18 @@ export default function Products({ onProductDetail }) {
           ))}
         </div>
 
-        {/* Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filtered.map(product => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onDetail={onProductDetail}
-              onAdd={handleAdd}
-            />
-          ))}
-        </div>
-
-        {filtered.length === 0 && (
+        {/* Responsive Carousel Grid */}
+        {filtered.length > 0 ? (
+          <ResponsiveCarousel
+            items={filtered}
+            renderItem={renderProductCard}
+            gridCols={4}
+            autoplay={false}
+            showArrows={true}
+            showIndicators={true}
+            className="px-6"
+          />
+        ) : (
           <div className="text-center py-20 text-gray-400">
             <span className="text-5xl">🔍</span>
             <p className="mt-4 text-lg">No hay productos en esta categoría.</p>
