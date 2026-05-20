@@ -97,8 +97,8 @@ export default function Contact() {
               <h4 className="font-bold text-gray-800 mb-3">Síguenos en redes</h4>
               <div className="flex gap-3">
                 {[
-                  { icon: Instagram, label: '@dulcetentacion', color: 'from-pink-500 to-rose-500', url: '#' },
-                  { icon: Facebook, label: 'Dulce Tentación', color: 'from-blue-600 to-blue-700', url: '#' },
+                  { icon: Instagram, label: '@PasteleriaElPaisa', color: 'from-pink-500 to-rose-500', url: 'https://www.instagram.com/tiventrujillo?igsh=MTU2bDhkaDYwb2Y3OQ%3D%3D&utm_source=qr' },
+                  { icon: Facebook, label: 'PasteleriaElPaisa', color: 'from-blue-600 to-blue-700', url: 'https://www.facebook.com/share/18gMiAJNH3/?mibextid=wwXIfr' },
                 ].map(({ icon: Icon, label, color, url }) => (
                   <a
                     key={label}
