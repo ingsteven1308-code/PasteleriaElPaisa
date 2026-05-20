@@ -30,15 +30,19 @@ export default function ResponsiveCarousel({
   showArrows = true,
   showIndicators = true,
   className = '',
+  // If true, force 1 slide per view on both mobile and tablet
+  singleOnMobileTablet = false,
 }) {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isTablet, setIsTablet] = useState(window.innerWidth >= 768 && window.innerWidth < 1024);
   const swiperRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => {
       setIsDesktop(window.innerWidth >= 1024);
       setIsMobile(window.innerWidth < 768);
+      setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1024);
     };
 
     window.addEventListener('resize', handleResize);
@@ -65,7 +69,12 @@ export default function ResponsiveCarousel({
   }
 
   // Mobile & Tablet carousel layout
-  const slidesPerView = isMobile ? 1 : 2;
+  let slidesPerView;
+  if (singleOnMobileTablet && (isMobile || isTablet)) {
+    slidesPerView = 1;
+  } else {
+    slidesPerView = isMobile ? 1 : 2;
+  }
 
   return (
     <div className={`relative carousel-container ${className}`}>

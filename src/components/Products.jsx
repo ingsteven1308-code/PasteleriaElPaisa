@@ -138,7 +138,9 @@ export default function Products({ onProductDetail }) {
             items={filtered}
             renderItem={renderProductCard}
             gridCols={4}
-            autoplay={false}
+            autoplay={true}
+            autoplayDelay={3500}
+            singleOnMobileTablet={true}
             showArrows={true}
             showIndicators={true}
             className="px-6"
