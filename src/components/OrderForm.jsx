@@ -52,7 +52,7 @@ export default function OrderForm({ isOpen, onClose }) {
       .map(i => `  • ${i.name} (${i.size}) x${i.qty} = ${formatCurrency(i.price * i.qty)}${i.options?.length ? `\n    Opciones: ${i.options.join(', ')}` : ''}`)
       .join('\n');
 
-    const msg = `🎂 *NUEVO PEDIDO - Dulce Tentación*\n\n` +
+    const msg = `🎂 *NUEVO PEDIDO - Pastelería El Paisa*\n\n` +
       `👤 *Datos del cliente*\n` +
       `  Nombre: ${form.name}\n` +
       `  Teléfono: ${form.phone}\n` +

@@ -17,7 +17,7 @@ const WhatsAppIcon = () => (
 );
 
 export default function WhatsAppButton() {
-  const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola%20%F0%9F%98%8A%20quiero%20hacer%20un%20pedido%20por%20WhatsApp.`;
+  const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola%20%F0%9F%98%8A%20quiero%20hacer%20un%20pedido`;
 
   return (
     <>

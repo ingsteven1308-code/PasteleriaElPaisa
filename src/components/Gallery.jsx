@@ -130,7 +130,7 @@ export default function Gallery() {
         <div className="text-center">
           <p className="text-gray-500 mb-4">Quieres un diseno personalizado para tu evento?</p>
           <a
-            href="https://wa.me/573001234567?text=Hola%2C%20quiero%20ver%20mas%20trabajos%20y%20hacer%20un%20pedido%20personalizado."
+            href="https://wa.me/573136135417?text=Hola%2C%20quiero%20ver%20mas%20trabajos%20y%20hacer%20un%20pedido%20personalizado."
             target="_blank"
             rel="noopener noreferrer"
             className="btn-whatsapp inline-flex items-center gap-2"
