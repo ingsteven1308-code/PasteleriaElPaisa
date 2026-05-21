@@ -2,14 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { MessageSquare } from 'lucide-react';
 import { galleryImages } from '../data/products';
 import ResponsiveCarousel from './ResponsiveCarousel';
+import pastelBoda from '../image/pastel_boda.png';
+import pastelCarros from '../image/pastel_carros.jpeg';
+import pastelCars from '../image/pastel_cars.jpeg';
+import pastelDinosaurios from '../image/pastel_dinosaurios.png';
+import pastelRealMadrid from '../image/pastel_real_madrid.jpeg';
+import pastelStich from '../image/pastel_stich.jpeg';
 
 const galleryCategories = [
   { id: 'all', label: 'Todos' },
-  { id: 'tortas', label: 'Tortas' },
+  { id: 'cumpleaños', label: 'Cumpleaños' },
   { id: 'bodas', label: 'Bodas' },
-  { id: 'cupcakes', label: 'Cupcakes' },
+  { id: 'bautizos', label: 'Bautizos' },
+  { id: 'primera_comunion', label: 'Primera Comunión' },
   { id: 'especiales', label: 'Especiales' },
-  { id: 'local', label: 'Nuestra tienda' },
+  
 ];
 
 const gradients = [
@@ -25,7 +32,7 @@ const emojis = ['🎂', '🌹', '🧁', '💍', '🎉', '🍰', '🌸', '🎊', 
 
 // Increased heights to make gallery items more prominent and similar to product cards
 // Each entry uses responsive height classes: mobile (base), md (tablet), lg (desktop)
-const heights = [
+const heightClasses = [
   'h-64 md:h-72 lg:h-80',
   'h-64 md:h-72 lg:h-80',
   'h-56 md:h-64 lg:h-72',
@@ -39,6 +46,15 @@ const heights = [
   'h-64 md:h-72 lg:h-80',
   'h-72 md:h-80 lg:h-96',
 ];
+
+const galleryImagesMap = {
+  pastel_boda: pastelBoda,
+  pastel_carros: pastelCarros,
+  pastel_cars: pastelCars,
+  pastel_dinosaurios: pastelDinosaurios,
+  pastel_real_madrid: pastelRealMadrid,
+  pastel_stich: pastelStich,
+};
 
 export default function Gallery() {
   const [active, setActive] = useState('all');
@@ -55,22 +71,42 @@ export default function Gallery() {
 
   const filtered = active === 'all'
     ? galleryImages
-    : galleryImages.filter(img => img.category === active);
+    : galleryImages.filter(img => {
+      return img.category
+        .split(',')
+        .map(tag => tag.trim().toLowerCase())
+        .includes(active.toLowerCase());
+    });
 
-  const renderGalleryItem = (img, idx) => (
-    <div
-      className={`rounded-2xl overflow-hidden bg-gradient-to-br ${gradients[idx % gradients.length]} ${heights[idx % heights.length]} flex flex-col items-center justify-center relative group cursor-pointer hover:shadow-xl transition-shadow`}
-    >
-      <span className="text-6xl md:text-7xl lg:text-8xl group-hover:scale-110 transition-transform duration-300">
-        {emojis[idx % emojis.length]}
-      </span>
-      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-end">
-        <div className="w-full p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-          <p className="font-semibold text-sm">{img.title}</p>
+  const renderGalleryItem = (img, idx) => {
+    const imageSrc = img.image ? galleryImagesMap[img.image] : null;
+
+    return (
+      <div
+        className={`rounded-2xl overflow-hidden ${imageSrc ? 'bg-slate-100' : `bg-gradient-to-br ${gradients[idx % gradients.length]}`} ${heightClasses[idx % heightClasses.length]} relative group cursor-pointer hover:shadow-xl transition-shadow`}
+      >
+        {imageSrc ? (
+          <img
+            src={imageSrc}
+            alt={img.title}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <div className="flex flex-col items-center justify-center h-full">
+            <span className="text-6xl md:text-7xl lg:text-8xl group-hover:scale-110 transition-transform duration-300">
+              {emojis[idx % emojis.length]}
+            </span>
+          </div>
+        )}
+
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-end">
+          <div className="w-full p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+            <p className="font-semibold text-sm">{img.title}</p>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <section id="galeria" className="py-20 bg-white">

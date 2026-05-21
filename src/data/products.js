@@ -205,16 +205,10 @@ export const promotions = [
 ];
 
 export const galleryImages = [
-  { id: 1, category: 'tortas', title: 'Torta Temática Unicornio' },
-  { id: 2, category: 'bodas', title: 'Torta de Bodas Floral' },
-  { id: 3, category: 'cupcakes', title: 'Cupcakes Decorados' },
-  { id: 4, category: 'local', title: 'Nuestro Local' },
-  { id: 5, category: 'especiales', title: 'Torta 3D Personalizada' },
-  { id: 6, category: 'postres', title: 'Mesa de Postres' },
-  { id: 7, category: 'tortas', title: 'Torta Red Velvet' },
-  { id: 8, category: 'bodas', title: 'Torta de Bodas Clásica' },
-  { id: 9, category: 'local', title: 'Nuestro Equipo' },
-  { id: 10, category: 'especiales', title: 'Torta Baby Shower' },
-  { id: 11, category: 'cupcakes', title: 'Cupcakes Temáticos' },
-  { id: 12, category: 'postres', title: 'Tiramisú Artesanal' },
+  { id: 1, category: 'bodas,bautizos,primera_comunion', title: 'Torta de Bodas Floral', image: 'pastel_boda' },
+  { id: 2, category: 'especiales,cumpleaños', title: 'Torta Cars de Fiesta', image: 'pastel_cars' },
+  { id: 3, category: 'especiales,cumpleaños', title: 'Torta Carros Retro', image: 'pastel_carros' },
+  { id: 4, category: 'especiales,cumpleaños', title: 'Torta Dinosaurios', image: 'pastel_dinosaurios' },
+  { id: 5, category: 'especiales,cumpleaños', title: 'Torta Real Madrid', image: 'pastel_real_madrid' },
+  { id: 6, category: 'especiales,cumpleaños', title: 'Torta Stitch', image: 'pastel_stich' },
 ];
