@@ -211,4 +211,6 @@ export const galleryImages = [
   { id: 4, category: 'especiales,cumpleaños', title: 'Torta Dinosaurios', image: 'pastel_dinosaurios' },
   { id: 5, category: 'especiales,cumpleaños', title: 'Torta Real Madrid', image: 'pastel_real_madrid' },
   { id: 6, category: 'especiales,cumpleaños', title: 'Torta Stitch', image: 'pastel_stich' },
+  { id: 7, category: 'especiales,cumpleaños', title: 'Torta Minecraft', image: 'pastel_minecraft' },
+  { id: 8, category: 'especiales,cumpleaños', title: 'Torta Niño Dinosaurio', image: 'pastel_nino_dinosaurio' },
 ];

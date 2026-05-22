@@ -8,6 +8,8 @@ import pastelCars from '../image/pastel_cars.jpeg';
 import pastelDinosaurios from '../image/pastel_dinosaurios.png';
 import pastelRealMadrid from '../image/pastel_real_madrid.jpeg';
 import pastelStich from '../image/pastel_stich.jpeg';
+import pastelMinecraft from '../image/pastel_minecraft.PNG?url';
+import pastelNinoDinosaurio from '../image/Pastel_niño_dinosaurio.PNG?url';
 
 const galleryCategories = [
   { id: 'all', label: 'Todos' },
@@ -54,11 +56,16 @@ const galleryImagesMap = {
   pastel_dinosaurios: pastelDinosaurios,
   pastel_real_madrid: pastelRealMadrid,
   pastel_stich: pastelStich,
+  pastel_minecraft: pastelMinecraft,
+  pastel_nino_dinosaurio: pastelNinoDinosaurio,
 };
 
 export default function Gallery() {
   const [active, setActive] = useState('all');
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
+  const [quickViewOpen, setQuickViewOpen] = useState(false);
+  const [quickViewImage, setQuickViewImage] = useState(null);
+  const [quickViewTitle, setQuickViewTitle] = useState('');
 
   useEffect(() => {
     const handleResize = () => {
@@ -83,14 +90,25 @@ export default function Gallery() {
 
     return (
       <div
-        className={`rounded-2xl overflow-hidden ${imageSrc ? 'bg-slate-100' : `bg-gradient-to-br ${gradients[idx % gradients.length]}`} ${heightClasses[idx % heightClasses.length]} relative group cursor-pointer hover:shadow-xl transition-shadow`}
+        className={`rounded-2xl overflow-hidden ${imageSrc ? 'bg-stone-50' : `bg-gradient-to-br ${gradients[idx % gradients.length]}`} ${heightClasses[idx % heightClasses.length]} relative group cursor-pointer hover:shadow-xl transition-shadow flex items-center justify-center`}
       >
         {imageSrc ? (
-          <img
-            src={imageSrc}
-            alt={img.title}
-            className="w-full h-full object-cover"
-          />
+          <button
+            type="button"
+            onClick={() => {
+              setQuickViewImage(imageSrc);
+              setQuickViewTitle(img.title);
+              setQuickViewOpen(true);
+            }}
+            className="w-full h-full"
+            aria-label={`Vista rápida: ${img.title}`}
+          >
+            <img
+              src={imageSrc}
+              alt={img.title}
+              className="w-full h-full object-cover object-center"
+            />
+          </button>
         ) : (
           <div className="flex flex-col items-center justify-center h-full">
             <span className="text-6xl md:text-7xl lg:text-8xl group-hover:scale-110 transition-transform duration-300">
@@ -107,6 +125,15 @@ export default function Gallery() {
       </div>
     );
   };
+
+  // Close Quick View on Escape
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'Escape') setQuickViewOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
 
   return (
     <section id="galeria" className="py-20 bg-white">
@@ -140,7 +167,7 @@ export default function Gallery() {
         <div className="mb-12">
           {isDesktop ? (
             // Desktop: Masonry layout
-            <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+            <div className="columns-2 md:columns-3 lg:columns-4 gap-2 space-y-2">
               {filtered.map((img, i) => (
                 <div key={img.id} className="break-inside-avoid animate-fade-in">
                   {renderGalleryItem(img, i)}
@@ -161,6 +188,46 @@ export default function Gallery() {
             />
           )}
         </div>
+
+        {/* Quick View Modal */}
+        {quickViewOpen && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            role="dialog"
+            aria-modal="true"
+            onClick={() => setQuickViewOpen(false)}
+          >
+            <div className="absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity" />
+
+            <div
+              className="relative z-10 max-w-4xl w-full mx-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setQuickViewOpen(false)}
+                className="absolute -top-3 -right-3 bg-white rounded-full p-2 shadow-lg z-20"
+                aria-label="Cerrar vista rápida"
+              >
+                ✕
+              </button>
+
+              <div className="rounded-lg overflow-hidden bg-white">
+                <div className="w-full flex items-center justify-center p-4 bg-black">
+                  <img
+                    src={quickViewImage}
+                    alt={quickViewTitle}
+                    className="max-h-[80vh] w-auto object-contain"
+                  />
+                </div>
+                {quickViewTitle && (
+                  <div className="p-4 text-center bg-white">
+                    <p className="font-semibold text-gray-800">{quickViewTitle}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* CTA */}
         <div className="text-center">
