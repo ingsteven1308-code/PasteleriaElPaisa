@@ -47,10 +47,7 @@ export default function Promotions({ onProductClick }) {
               </div>
             )}
 
-            <div className="flex items-center gap-2 text-white/70 text-xs mb-6">
-              <Clock size={12} />
-              Válido hasta: {promo.validUntil}
-            </div>
+            
           </div>
 
           <div className="flex gap-3">
@@ -83,10 +80,10 @@ export default function Promotions({ onProductClick }) {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-primary-100 text-primary-700 text-sm font-semibold px-4 py-2 rounded-full mb-4">
             <Tag size={14} />
-            Ofertas especiales
+            Experiencias Dulces
           </div>
-          <h2 className="section-title">Promociones del Mes</h2>
-          <p className="section-subtitle">Aprovecha estas ofertas por tiempo limitado y disfruta nuestros mejores productos a precios increíbles.</p>
+          <h2 className="section-title">Combinaciones Especiales</h2>
+          <p className="section-subtitle">Descubre nuestras deliciosas combinaciones cuidadosamente seleccionadas para disfrutar y compartir en cualquier ocasión especial.</p>
         </div>
 
         <ResponsiveCarousel
