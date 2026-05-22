@@ -85,12 +85,15 @@ export default function Gallery() {
         .includes(active.toLowerCase());
     });
 
+  const mobileCardHeight = 'h-72 md:h-80';
+
   const renderGalleryItem = (img, idx) => {
     const imageSrc = img.image ? galleryImagesMap[img.image] : null;
+    const cardHeightClass = isDesktop ? heightClasses[idx % heightClasses.length] : mobileCardHeight;
 
     return (
       <div
-        className={`rounded-2xl overflow-hidden ${imageSrc ? 'bg-stone-50' : `bg-gradient-to-br ${gradients[idx % gradients.length]}`} ${heightClasses[idx % heightClasses.length]} relative group cursor-pointer hover:shadow-xl transition-shadow flex items-center justify-center`}
+        className={`rounded-2xl overflow-hidden ${imageSrc ? 'bg-stone-50' : `bg-gradient-to-br ${gradients[idx % gradients.length]}`} ${cardHeightClass} relative group cursor-pointer hover:shadow-xl transition-shadow flex items-center justify-center`}
       >
         {imageSrc ? (
           <button
